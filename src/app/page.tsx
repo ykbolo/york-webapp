@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { Calendar as CalendarIcon } from "lucide-react";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -17,7 +19,7 @@ export default function Home() {
           </p>
           <div className={styles.ctaGrid}>
             <a href="#projects" className={styles.btnPrimary}>View Projects</a>
-            <a href="#contact" className={styles.btnSecondary}>Get in Touch</a>
+            <Link href="/calendar" className={styles.btnSecondary}>乒乓球赛历</Link>
           </div>
         </div>
       </section>
@@ -38,7 +40,30 @@ export default function Home() {
       <section id="projects" className={styles.section}>
         <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Selected Projects</h2>
         <div className={styles.grid}>
-          {[1, 2, 3].map((i) => (
+          <div className={styles.card}>
+            <div style={{ 
+              height: '200px', 
+              background: 'linear-gradient(135deg, #0092bc, #076d9d)', 
+              borderRadius: '16px',
+              marginBottom: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden'
+            }}>
+              <div style={{ color: 'white', textAlign: 'center' }}>
+                <CalendarIcon size={48} style={{ marginBottom: '8px' }} />
+                <div style={{ fontWeight: 'bold' }}>乒乓球赛事日历</div>
+              </div>
+            </div>
+            <h3 style={{ marginBottom: '0.5rem' }}>乒乓球赛事日历</h3>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
+              一个基于 React 和 Next.js 构建的高性能、交互式赛事日历系统。支持多日跨度显示、赛事分组及详细信息展示。
+            </p>
+            <Link href="/calendar" style={{ color: 'var(--primary)', fontWeight: '600' }}>进入系统 →</Link>
+          </div>
+
+          {[1, 2].map((i) => (
             <div key={i} className={styles.card}>
               <div style={{ 
                 height: '200px', 
@@ -49,13 +74,13 @@ export default function Home() {
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <span style={{ color: 'var(--text-muted)' }}>Project Preview {i}</span>
+                <span style={{ color: 'var(--text-muted)' }}>即将推出...</span>
               </div>
               <h3 style={{ marginBottom: '0.5rem' }}>Project Title {i}</h3>
               <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
                 A brief description of the project and the technologies used in its development.
               </p>
-              <a href="#" style={{ color: 'var(--primary)', fontWeight: '600' }}>Learn More →</a>
+              <span style={{ color: 'var(--text-muted)', cursor: 'not-allowed' }}>开发中</span>
             </div>
           ))}
         </div>
