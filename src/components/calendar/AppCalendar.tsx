@@ -74,7 +74,6 @@ export default function AppCalendar({ list, selectDate, scene, onDateChange, onE
       return bEnd.localeCompare(aEnd);
     });
 
-    const eventToSlot = new Map<string, number>();
     let maxSlotUsed = 0;
 
     sortedAllEvents.forEach(event => {
@@ -101,7 +100,6 @@ export default function AppCalendar({ list, selectDate, scene, onDateChange, onE
               day.slots[slotIndex] = event;
             }
           }
-          eventToSlot.set(event.esid, slotIndex);
           maxSlotUsed = Math.max(maxSlotUsed, slotIndex);
           break;
         }
@@ -136,9 +134,9 @@ export default function AppCalendar({ list, selectDate, scene, onDateChange, onE
           </tr>
         </thead>
         <tbody>
-          {calendarRows.map((row, rowIndex) => (
+          {calendarRows.map((row: any[], rowIndex: number) => (
             <tr key={rowIndex} className="calendar-row">
-              {row.map((day, dayIndex) => (
+              {row.map((day: any, dayIndex: number) => (
                 <td 
                   key={day.date} 
                   className={`calendar-day ${day.isCurrentMonth ? '' : 'other-month'} ${day.isToday ? 'today' : ''} ${scene === 'day' && selectDate === day.date ? 'selected' : ''}`}
@@ -149,7 +147,7 @@ export default function AppCalendar({ list, selectDate, scene, onDateChange, onE
                       <span className="day-number">{day.isToday ? '今' : day.dayOfMonth}</span>
                     </div>
                     <div className="day-slots">
-                      {day.slots.map((event, slotIndex) => {
+                      {day.slots.map((event: Event | null, slotIndex: number) => {
                         if (!event) return <div key={slotIndex} className="empty-slot"></div>;
                         
                         const isStart = event.event_date_format === day.date;
@@ -184,7 +182,6 @@ export default function AppCalendar({ list, selectDate, scene, onDateChange, onE
                               borderLeft: isStart ? `3px solid ${colors.border}` : 'none',
                               color: hoveredEventId === event.esid ? 'white' : colors.text,
                               transition: 'all 0.2s ease',
-                              // IMPORTANT: Higher z-index for segments showing text so they overlap neighbors
                               zIndex: showName ? 10 : 2
                             } as React.CSSProperties}
                             onMouseEnter={() => setHoveredEventId(event.esid)}
@@ -199,7 +196,6 @@ export default function AppCalendar({ list, selectDate, scene, onDateChange, onE
                                 className="event-text-container"
                                 style={{ 
                                   left: isStart ? 0 : 18,
-                                  // Increase width significantly to ensure no premature truncation
                                   width: isStart 
                                     ? `calc(${spanInRow * 100}% - 12px + ${(spanInRow - 1) * 2}px)`
                                     : `calc(${spanInRow * 100}% - 22px + ${(spanInRow - 1) * 2}px)`
