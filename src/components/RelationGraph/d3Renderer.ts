@@ -220,6 +220,7 @@ export function renderRelChart({ data, lang, options = {} }: any) {
     this.renderLines();
     this.renderNodes();
     bindEvents();
+    return this;
   };
 
   chart.renderChart({});
