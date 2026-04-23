@@ -144,7 +144,7 @@ export function renderRelChart({ data, lang, options = {} }: any) {
   };
 
   chart.renderLines = () => {
-    links = chart?.body()
+    links = (chart?.body() as d3.Selection<SVGGElement, any, any, any>)
       .append('g')
       .selectAll('path')
       .data(formattedEdges)
@@ -157,7 +157,7 @@ export function renderRelChart({ data, lang, options = {} }: any) {
   };
 
   chart.renderNodes = function () {
-    gs = chart?.body()
+    gs = (chart?.body() as d3.Selection<SVGGElement, any, any, any>)
       .selectAll('.node-group')
       .data(nodes)
       .enter()
