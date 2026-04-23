@@ -50,7 +50,7 @@ export default function AppCalendar({ list, selectDate, scene, onDateChange, onE
     const endDay = endOfMonth.clone().endOf('week');
 
     const totalDays = endDay.diff(startDay, 'days') + 1;
-    const allDays = [];
+    const allDays: any[] = [];
     
     let current = startDay.clone();
     for (let i = 0; i < totalDays; i++) {

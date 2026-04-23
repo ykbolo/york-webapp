@@ -29,7 +29,7 @@ export default function CalendarPage() {
     try {
       const begin = moment(date).startOf('month').format('YYYY-MM-DD');
       const end = moment(date).endOf('month').format('YYYY-MM-DD');
-      const response = await fetch(`http://localhost:3005/api/calendar/events?begin=${begin}&end=${end}`);
+      const response = await fetch(`/api/calendar/events?begin=${begin}&end=${end}`);
       const data = await response.json();
       if (data.code === 0) {
         setList(data.obj.eventList || []);
