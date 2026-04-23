@@ -104,6 +104,11 @@ export class D3Chart {
     }
   }
 
+  // Define dynamic methods to satisfy TypeScript
+  renderLines?: () => void;
+  renderNodes?: () => void;
+  defines?: () => void;
+
   renderBody() {
     if (!this._body && this._svg) {
       this._body = this._svg
