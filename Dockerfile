@@ -19,4 +19,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Start both backend and frontend. Force Next.js to bind to 0.0.0.0
-CMD ["sh", "-c", "node backend/index.js & npx next start -H 0.0.0.0"]
+CMD ["sh", "-c", "node backend/index.js & node backend/hotspot-service.js & npx next start -H 0.0.0.0"]
