@@ -52,3 +52,14 @@ pm2 list
 - **重启服务：** `systemctl restart nginx`
 - **防火墙检查：** `firewall-cmd --list-all`
 - **查看端口占用：** `netstat -ntlp`
+
+## 4. AI 热点追踪数据库运维 (MySQL Docker)
+详见 [db-hotspot-workflow.md](./db-hotspot-workflow.md)
+
+- **容器名:** `york-mysql`
+- **库名:** `hotspot_db`
+- **快速进入命令行:**
+  ```powershell
+  ssh -t -i "C:\Users\DELL\Desktop\york_20260423.pem" root@122.51.6.210 "docker exec -it york-mysql mysql -uroot -pyork_password_2026 -D hotspot_db"
+  ```
+- **重启服务:** `docker restart york-mysql`

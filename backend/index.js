@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const moment = require('moment');
+const pool = require('./db');
 const app = express();
 const port = 3005;
 
@@ -54,6 +55,15 @@ const mockEvents = [
     detail: '挖掘未来国乒接班人的重要摇篮，汇聚了全国最优秀的青少年选手。',
   }
 ];
+
+app.get('/api/calendar/events', (req, res) => {
+  res.json({
+    code: 0,
+    obj: {
+      eventList: mockEvents
+    }
+  });
+});
 
 app.get('/api/calendar/events', (req, res) => {
   res.json({
